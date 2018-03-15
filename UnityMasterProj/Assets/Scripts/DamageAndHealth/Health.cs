@@ -6,11 +6,12 @@ public class Health : MonoBehaviour {
 
 	public int currentHealth;
 
-	public Element currentElement;
+	public ElementManager elementManager;
+	private SO_Elemental.elementType elementType;
 
 	private Rigidbody RB;
 	private CharacterController CC;
-    private EnimyNavigation eNav;
+    private EnemyNavigation eNav;
 	private bool isMoveable = false;
 	private bool usesCC;
     private bool usesNav;
@@ -20,9 +21,11 @@ public class Health : MonoBehaviour {
 	}
 
 	void Setup(){																			//Determines if there is a character controller or a rigidbody attached
-		RB = this.gameObject.GetComponent<Rigidbody>();
-		CC = this.gameObject.GetComponent<CharacterController>();
-        eNav = this.gameObject.GetComponent<EnimyNavigation>();
+		RB = GetComponent<Rigidbody>();
+		CC = GetComponent<CharacterController>();
+        eNav = GetComponent<EnemyNavigation>();
+		elementManager = GetComponent<ElementManager>();
+
 		if (CC != null) {
 			isMoveable = true;
 			usesCC = true;
@@ -39,20 +42,31 @@ public class Health : MonoBehaviour {
 		}
 	}
 
-	public void TakeDamage(int _dam, int _kBForce, Element damElement, Vector3 _dir ) {		//takes the damage, knockback force, element, and force direction
+	public void TakeDamage(int _dam, int _kBForce, SO_Elemental.elementType damElement, Vector3 _dir )		//takes the damage, knockback force, element, and force direction
+	{
+		SO_Elemental _so_Elemental = elementManager.currentElemental.GetComponent<ElementalController>().so_Elemental;
 
-		if (damElement != null) {															//if the damager has an element assigned to it
-			for (int i = 0; i < currentElement.weaknesses.Length; i++) {					//check to see if it is strong against the current element
-				if (currentElement.weaknesses [i].elementName == damElement.elementName) {	
-					currentHealth += 2 * _dam;												//apply double damage
-				}
+
+		//if the damager's element is not NEUTRAL
+		if ((int)damElement != 0)															
+		{
+			//if the damager's element is weak against the damager's element, apply double damage
+			if (_so_Elemental.elementStrengthOne == damElement || _so_Elemental.elementStrengthTwo == damElement)
+			{	
+				currentHealth += _dam / 2;
 			}
-			for (int i = 0; i < currentElement.strengths.Length; i++) {						//check to see if the dam element is weak against current element
-				if (currentElement.strengths [i].elementName == damElement.elementName) {	
-					currentHealth += _dam / 2;												//apply half damage
-				}
+
+			//if the damager's element is strong against the damager's element, apply double damage
+			if (_so_Elemental.elementWeakness == damElement)
+			{	
+				currentHealth += _dam * 2;
 			}
-		} else { currentHealth += _dam; }													//if there are no elements just apply damage normally
+		}
+		
+		else
+		{
+			currentHealth += _dam;
+		}													//if there are no elements just apply damage normally
 
         print(currentHealth);
 
@@ -103,5 +117,4 @@ public class Health : MonoBehaviour {
         }
         eNav.ApplyForce(_force, false);
     }
-
 }

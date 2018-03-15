@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Name: Jim_temp
   m_EditorClassIdentifier: 
   lookSensitivity: 3
-  name: 
+  name: Jim
   gravity: 14
   jumpForce: 10
   jumpCount: 0
   jumpLimit: 1
   walkSpeed: 5
   runSpeed: 10
-  currentElement: 0
-  animals: []
-  currentAnimal: {fileID: 0}
+  charPortrait: {fileID: 21300000, guid: e2ad48577f30d794694833b50855c833, type: 3}

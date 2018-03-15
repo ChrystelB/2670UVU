@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * Abstract player scriptable object
  * REMINDER: DO NOT INSTANTIATE
  * contains default player data
  */
+
 public abstract class ABS_Player : ScriptableObject 
 {
-	// 
 	public float lookSensitivity = 3.0f;
 
 	public new string name;
@@ -24,10 +25,12 @@ public abstract class ABS_Player : ScriptableObject
 	public float walkSpeed = 5.0f;
 	public float runSpeed = 10.0f;
 
-	
-	public Elemental.elementType currentElement = Elemental.elementType.Neutral;
+	//temporarily moving to ElementManager class	
+	/*public Elemental.elementType currentElement = Elemental.elementType.Neutral;
 	public List<GameObject> animals;
-	public GameObject currentAnimal;
+	public GameObject currentAnimal;*/
+
+	public Sprite charPortrait;
 
 	//abstract function that allows the player to jump
 	//parameter: player vertical velocity

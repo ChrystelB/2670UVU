@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221f9e0230a874a4e817726314f668f9, type: 3}
+  m_Name: WindElemental
+  m_EditorClassIdentifier: 
+  name: WindElemental
+  symbol: {fileID: 21300000, guid: 40de4fbda2adb994eb495e3a64945e58, type: 3}
+  type: 5
+  elementStrengthOne: 3
+  elementStrengthTwo: 4
+  elementWeakness: 1
+  elementStrengthPathOne: 1
+  elementStrengthPathTwo: 3
+  elementWeaknessPath: 0

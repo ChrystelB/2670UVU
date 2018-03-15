@@ -9,5 +9,6 @@ public class GameEventBehavior : StateMachineBehaviour {
 
 	void OnStateEnter (){
 		gameEvent.Raise();
+		//Debug.Log(gameEvent);
 	}
 }

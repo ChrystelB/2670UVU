@@ -7,26 +7,35 @@ using UnityEngine.UI;
 public class DisplayElement : MonoBehaviour {
 
 	public GameObject player;
-	private PlayerController playerController;
+	private ElementManager elementManager;
 
-	private Image image;
-
-	//0 = primary element, 1 = secondary element
-	public int elementNum;
+	public Image primaryElementImg;
+	public Image secondaryElementImg;
 
 	void Start()
 	{
-		image = GetComponent<Image>();
-		playerController = player.GetComponent<PlayerController>();
+		elementManager = player.GetComponent<ElementManager>();
 	}
 
 	public void Display()
 	{
-		//checks to make sure that the player has picked up an element
-		if(playerController.player.animals[elementNum] != null)
+		//checks to make sure that the player has picked up  element
+		switch(elementManager.elementals.Count)
 		{
-			//checks SO_Player for the primary or secondary element as determined by elementNum, then changes sprite to the corresponding animal's symbol.
-			image.sprite = playerController.player.animals[elementNum].GetComponent<AnimalBehavior>().animal.symbol;
+			case 0:
+				
+				break;
+				
+			case 1:
+				//checks ElementManager for the primary or secondary element as determined by elementNum, then changes sprite to the corresponding elemental's symbol.
+				primaryElementImg.sprite = elementManager.elementals[0].GetComponent<ElementalController>().so_Elemental.symbol;
+				break;
+
+			case 2:
+				
+				primaryElementImg.sprite = elementManager.elementals[0].GetComponent<ElementalController>().so_Elemental.symbol;
+				secondaryElementImg.sprite = elementManager.elementals[1].GetComponent<ElementalController>().so_Elemental.symbol;
+				break;				
 		}
 	}
 }

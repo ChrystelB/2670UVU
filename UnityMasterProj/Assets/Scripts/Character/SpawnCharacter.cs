@@ -10,7 +10,7 @@ public class SpawnCharacter : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		player.transform.position = playerSpawnLocation[Random.Range(0, playerSpawnLocation.Length)].transform.position;
+		//player.transform.position = playerSpawnLocation[Random.Range(0, playerSpawnLocation.Length)].transform.position;
 	}
 
 	void OnTriggerEnter(Collider other)

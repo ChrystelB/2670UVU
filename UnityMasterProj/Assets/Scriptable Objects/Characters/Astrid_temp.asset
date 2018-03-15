@@ -19,6 +19,4 @@ MonoBehaviour:
   jumpLimit: 1
   walkSpeed: 5
   runSpeed: 10
-  currentElement: 0
-  animals: []
-  currentAnimal: {fileID: 0}
+  charPortrait: {fileID: 21300000, guid: 1fe658c6b2dd33848bfd609a87a0d714, type: 3}
